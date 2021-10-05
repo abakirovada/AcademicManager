@@ -1,4 +1,6 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -28,6 +30,42 @@ namespace MyHomework.Data
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        //public DbSet<Teacher> Teachers { get; set; }
+        //public DbSet<Student> Students { get; set; }
+        //public DbSet<Assignment> Assignments { get; set; }
+        //public DbSet<Class> Classes { get; set; }
+        //public DbSet<Grade> Grades { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Conventions
+                .Remove<PluralizingTableNameConvention>();
+
+            modelBuilder
+                .Configurations
+                .Add(new IdentityUserLoginCOnfiguration())
+                .Add(new IdentityUserRoleConfiguration());
+        }
+
+
+    }
+
+    public class IdentityUserLoginCOnfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginCOnfiguration()
+        {
+            HasKey(iul => iul.UserId);
+        }
+    }
+
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        {
+            HasKey(iur => iur.UserId);
         }
     }
 }
