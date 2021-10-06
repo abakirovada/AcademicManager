@@ -54,11 +54,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TeacherEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeacherCreate.cs" />
+    <Compile Include="TeacherDetail.cs" />
+    <Compile Include="TeacherList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyHomework.Data\MyHomework.Data.csproj">
+      <Project>{BB835302-25BA-4809-A75D-3C6574F118A4}</Project>
+      <Name>MyHomework.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
