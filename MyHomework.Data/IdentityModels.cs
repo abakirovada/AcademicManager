@@ -31,12 +31,11 @@ namespace MyHomework.Data
         {
             return new ApplicationDbContext();
         }
-
-        //public DbSet<Teacher> Teachers { get; set; }
-        //public DbSet<Student> Students { get; set; }
-        //public DbSet<Assignment> Assignments { get; set; }
-        //public DbSet<Class> Classes { get; set; }
-        //public DbSet<Grade> Grades { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -46,26 +45,24 @@ namespace MyHomework.Data
 
             modelBuilder
                 .Configurations
-                .Add(new IdentityUserLoginCOnfiguration())
+                .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
-
-
     }
 
-    public class IdentityUserLoginCOnfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    public class IdentityUserLoginConfiguration: EntityTypeConfiguration<IdentityUserLogin>
     {
-        public IdentityUserLoginCOnfiguration()
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(iul => iul.UserId);
+        }
+    }
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
         {
             HasKey(iul => iul.UserId);
         }
     }
 
-    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
-    {
-        public IdentityUserRoleConfiguration()
-        {
-            HasKey(iur => iur.UserId);
-        }
-    }
 }

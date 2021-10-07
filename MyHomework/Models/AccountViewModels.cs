@@ -50,7 +50,6 @@ namespace MyHomework.Models
     {
         [Required]
         [Display(Name = "UserName")]
-        [EmailAddress]
         public string UserName { get; set; }
 
         [Required]
@@ -65,7 +64,7 @@ namespace MyHomework.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "UserRoles")]
+        [Display(Name = "User Roles")]
         public string UserRoles { get; set; }
 
         [Required]
@@ -74,7 +73,7 @@ namespace MyHomework.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]

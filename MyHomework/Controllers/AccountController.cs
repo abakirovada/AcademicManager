@@ -142,7 +142,7 @@ namespace MyHomework.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(context.Roles.Where(u=>!u.Name.Contains("Admin")).ToList(), "Name", "Name");
             return View();
         }
 
@@ -170,7 +170,7 @@ namespace MyHomework.Controllers
 
                     return RedirectToAction("Index", "Users");
                 }
-                ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(context.Roles.Where(u=> !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
