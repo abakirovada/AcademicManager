@@ -58,6 +58,10 @@
     <Compile Include="ClassDetail.cs" />
     <Compile Include="ClassEdit.cs" />
     <Compile Include="ClassList.cs" />
+    <Compile Include="StudentCreate.cs" />
+    <Compile Include="StudentDetail.cs" />
+    <Compile Include="StudentEdit.cs" />
+    <Compile Include="StudentList.cs" />
     <Compile Include="TeacherEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeacherCreate.cs" />
