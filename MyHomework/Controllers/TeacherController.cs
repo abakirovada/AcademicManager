@@ -71,6 +71,8 @@ namespace MyHomework.Controllers
             };
             return View(model);
         }
+
+        //post:Edit
         [Authorize(Roles = "Teacher")]
         [HttpPost]
         [ActionName("Edit")]
