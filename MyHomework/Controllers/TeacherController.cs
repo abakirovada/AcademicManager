@@ -22,13 +22,13 @@ namespace MyHomework.Controllers
             return View(model);
         }
         //Get: Create
-        [Authorize(Roles = "Teacher")]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
         //post:create
-        [Authorize(Roles = "Teacher")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TeacherCreate model)
