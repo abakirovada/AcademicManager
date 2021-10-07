@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyHomework.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,25 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyHomework.Data
+namespace MyHomework.Models
 {
-    public class Student
+    public class StudentList
     {
-        [Key]
         public int StudentId { get; set; }
 
-        [Required]
-        [Display(Name ="First Name")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Required]
-        [Display(Name ="Last Name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
         public string Email { get; set; }
 
-        [Display(Name ="Enrolled Classes")]
+        [Display(Name = "Enrolled Classes")]
         public virtual ICollection<Enrollment> Classes { get; set; }
 
         [ForeignKey(nameof(Points))]
