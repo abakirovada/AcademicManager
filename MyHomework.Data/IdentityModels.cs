@@ -36,6 +36,7 @@ namespace MyHomework.Data
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
