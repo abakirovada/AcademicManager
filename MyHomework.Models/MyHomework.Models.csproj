@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignmentCreate.cs" />
+    <Compile Include="AssignmentDetail.cs" />
+    <Compile Include="AssignmentEdit.cs" />
+    <Compile Include="AssignmentList.cs" />
     <Compile Include="ClassCreate.cs" />
     <Compile Include="ClassDetail.cs" />
     <Compile Include="ClassEdit.cs" />
