@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -261,6 +262,11 @@
     <Content Include="Views\Assignment\Details.cshtml" />
     <Content Include="Views\Assignment\Edit.cshtml" />
     <Content Include="Views\Assignment\Delete.cshtml" />
+    <Content Include="Views\Grade\Index.cshtml" />
+    <Content Include="Views\Grade\Create.cshtml" />
+    <Content Include="Views\Grade\Details.cshtml" />
+    <Content Include="Views\Grade\Edit.cshtml" />
+    <Content Include="Views\Grade\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

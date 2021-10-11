@@ -62,6 +62,10 @@
     <Compile Include="ClassDetail.cs" />
     <Compile Include="ClassEdit.cs" />
     <Compile Include="ClassList.cs" />
+    <Compile Include="GradeCreate.cs" />
+    <Compile Include="GradeDetail.cs" />
+    <Compile Include="GradeEdit.cs" />
+    <Compile Include="GradeList.cs" />
     <Compile Include="StudentCreate.cs" />
     <Compile Include="StudentDetail.cs" />
     <Compile Include="StudentEdit.cs" />
