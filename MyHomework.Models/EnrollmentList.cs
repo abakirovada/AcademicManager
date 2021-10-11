@@ -1,21 +1,16 @@
-﻿using System;
+﻿using MyHomework.Data;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyHomework.Data
+namespace MyHomework.Models
 {
-    public class Enrollment
+    public class EnrollmentList
     {
-        [Key]
         public int EnrollmentId { get; set; }
-
-        public int ClassId { get; set; }
         public virtual Class Class { get; set; }
-        public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
         public ICollection<Student> Students { get; set; }
     }
 }
