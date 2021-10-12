@@ -17,6 +17,7 @@ namespace MyHomework.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [EmailAddress]
         public string Email { get; set; }
     }
 }

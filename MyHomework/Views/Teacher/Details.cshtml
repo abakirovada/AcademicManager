@@ -3,48 +3,98 @@
 @{
     ViewBag.Title = "Details";
 }
+@if (User.IsInRole(MyHomework.Models.Roles.Teacher))
+{
+ <body style="background-image: url(https://clipartstation.com/wp-content/uploads/2017/11/green-board-background-clipart.jpg); background-position: center; background-size: cover; height: 100px; margin-top: 100px;">
+    <h2>More about Teacher</h2>
 
-<h2>Details</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TeacherId)
+            </dt>
 
-<div>
-    <h4>TeacherDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TeacherId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TeacherId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TeacherId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+        </dl>
+    </div>
+    <button class="alert-success text-center col-sm-offset-2">
+        @Html.ActionLink("Update Info", "Edit", new { id = Model.TeacherId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+    </body>
+    }
+    @if (User.IsInRole(MyHomework.Models.Roles.Student))
+    {
+        <body style="background-image: url(https://clipartstation.com/wp-content/uploads/2017/11/green-board-background-clipart.jpg); background-position: center; background-size: cover; height: 100px; margin-top: 100px;">
+            <h2>More about Teacher</h2>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TeacherId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TeacherId)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TeacherId)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                </dl>
+            </div>
+            <button class="alert-success text-center col-sm-offset-2">
+                @Html.ActionLink("Back to List", "Index")
+            </button>
+        </body>
+    }
