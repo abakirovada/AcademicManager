@@ -3,58 +3,117 @@
 @{
     ViewBag.Title = "Index";
 }
+@if (User.IsInRole(MyHomework.Models.Roles.Teacher))
+{
+    <body>
+        <div class="bg-image col-lg-6" style="background-image: url(http://www.freeppt.net/background/textures-notebook-paper-wallpapers-backgrounds-for-powerpoint.jpg); height: 100vh; width: 120vh; ">
 
-<h2>Index</h2>
+            <h2 class="text-center text-danger"><strong>TEACHERS</strong></h2>
 
-<p>
-    @Html.ActionLink("Create New Teacher", "Create")
-</p>
-@if (TempData.ContainsKey("SaveResult")) 
-{ 
-<div class="alert-success fade in" role="alert">
-    @ViewBag.SaveResult
-    <button type="button" class="close" data-dismiss="alert"><span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>
+            <p class="col-lg-2 text-center text-danger" style="font-size:14px; border-style:solid">
+                @Html.ActionLink("Add New Teacher", "Create")
+            </p>
+            @if (TempData.ContainsKey("SaveResult"))
+            {
+                <div class="col-lg-6 alert alert-danger fade in" role="alert">
+                    @ViewBag.SaveResult
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                    @TempData["SaveResult"]
+                </div>
+            }
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TeacherId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeacherId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Update Info", "Edit", new { id = item.TeacherId }) |
+                            @Html.ActionLink("See More Info", "Details", new { id = item.TeacherId }) |
+                            @Html.ActionLink("Delete Teacher", "Delete", new { id = item.TeacherId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </body>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TeacherId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.TeacherId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id=item.TeacherId}) |
-        @Html.ActionLink("Details", "Details", new { id=item.TeacherId}) |
-        @Html.ActionLink("Delete", "Delete", new { id=item.TeacherId})
-    </td>
-</tr>
+@if (User.IsInRole(MyHomework.Models.Roles.Student))
+{
+    <body>
+        <div class="bg-image col-lg-6" style="background-image: url(http://www.freeppt.net/background/textures-notebook-paper-wallpapers-backgrounds-for-powerpoint.jpg); height: 100vh; width: 120vh;">
+
+            <h2 class="text-center text-danger"><strong>TEACHERS</strong></h2>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TeacherId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("See More Info", "Details", new { id = item.TeacherId })
+                </td>
+            </tr>
+                }
+
+            </table>
+        </div>
+    </body>
 }
-
-</table>

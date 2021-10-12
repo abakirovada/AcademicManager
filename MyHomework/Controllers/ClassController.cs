@@ -8,15 +8,16 @@ using System.Web.Mvc;
 
 namespace MyHomework.Controllers
 {
-    [Authorize]
     public class ClassController : Controller
     {
         // GET: Class
+        [Authorize]
         public ActionResult Index()
         {
-            var service = new ClassService();
+            var service = CreateClassService();
             var model = service.GetClasses();
-            return View();
+
+            return View(model);
         }
 
         //Get:Create
@@ -75,7 +76,7 @@ namespace MyHomework.Controllers
                 Name = detail.Name,
                 TeacherId = detail.TeacherId,
                 Teacher = detail.Teacher,
-                Assignments=detail.Assignments,
+                Assignments = detail.Assignments,
             };
             return View(model);
         }

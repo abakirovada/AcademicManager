@@ -17,7 +17,8 @@ namespace MyHomework.Services
                 {
                     Name = model.Name,
                     IsActive = model.IsActive,
-                    Teacher = model.Teacher
+                    TeacherId = model.TeacherId,
+                    Teacher=model.Teacher
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -40,9 +41,9 @@ namespace MyHomework.Services
                             ClassId=e.ClassId,
                             Name = e.Name,
                             IsActive = e.IsActive,
-                            //TeacherId = e.TeacherId,
-                            //Teacher = e.Teacher,
-                            //Assignments = e.Assignments
+                            TeacherId = e.TeacherId,
+                            Teacher = e.Teacher,
+                            Assignments = e.Assignments
                         });
                 return query.ToArray();
             }
