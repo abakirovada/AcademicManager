@@ -9,6 +9,7 @@ namespace MyHomework.Models
 {
     public class StudentCreate
     {
+
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -18,7 +19,8 @@ namespace MyHomework.Models
         public string LastName { get; set; }
 
         [Required]
-        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
     }
 }

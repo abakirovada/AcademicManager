@@ -13,9 +13,8 @@ namespace MyHomework.Data
         public int EnrollmentId { get; set; }
 
         public int ClassId { get; set; }
-        public virtual Class Class { get; set; }
+        public virtual List<Class> Classes { get; set; }
         public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
-        public ICollection<Student> Students { get; set; }
+        public virtual List<Student> Students { get; set; }
     }
 }
