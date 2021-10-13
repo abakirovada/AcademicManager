@@ -15,7 +15,7 @@ namespace MyHomework.Models
 
         public DateTimeOffset Deadline { get; set; }
 
-        public virtual Class Class { get; set; }
+        public int ClassId { get; set; }
 
         public bool IsAssigned { get; set; }
 

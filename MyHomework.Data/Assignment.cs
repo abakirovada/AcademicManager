@@ -17,6 +17,8 @@ namespace MyHomework.Data
         public string Name { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy HH:mm:ss}")]
         public DateTimeOffset Deadline { get; set; }
 
         [ForeignKey(nameof(Class))]
