@@ -25,10 +25,10 @@ namespace MyHomework.Data
         public string Email { get; set; }
 
         [Display(Name ="Enrolled Classes")]
-        public virtual ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Enrollment> Classes { get; set; }
 
-        [ForeignKey(nameof(Points))]
-        public int Grade { get; set; }
-        public virtual Grade Points { get; set; }
+        //[ForeignKey(nameof(Points))]
+        public int GradeId { get; set; }
+        public virtual ICollection<Grade> Points { get; set; }
     }
 }

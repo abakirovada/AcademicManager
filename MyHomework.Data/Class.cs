@@ -14,13 +14,13 @@ namespace MyHomework.Data
         public int ClassId { get; set; }
 
         [Required]
+        [Display(Name ="Name of the Class")]
         public string Name { get; set; }
 
-        [Required]
         public bool IsActive { get; set; }
 
         [ForeignKey(nameof(Teacher))]
-        public int TeacherId { get; set; }
+        public Teacher TeacherId { get; set; }
         public virtual Teacher Teacher { get; set; }
 
         public virtual ICollection<Assignment> Assignments { get; set; }

@@ -54,6 +54,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignmentCreate.cs" />
+    <Compile Include="AssignmentDetail.cs" />
+    <Compile Include="AssignmentEdit.cs" />
+    <Compile Include="AssignmentList.cs" />
+    <Compile Include="ClassCreate.cs" />
+    <Compile Include="ClassDetail.cs" />
+    <Compile Include="ClassEdit.cs" />
+    <Compile Include="ClassList.cs" />
+    <Compile Include="EnrollmentCreate.cs" />
+    <Compile Include="EnrollmentDetail.cs" />
+    <Compile Include="EnrollmentEdit.cs" />
+    <Compile Include="EnrollmentList.cs" />
+    <Compile Include="GradeCreate.cs" />
+    <Compile Include="GradeDetail.cs" />
+    <Compile Include="GradeEdit.cs" />
+    <Compile Include="GradeList.cs" />
+    <Compile Include="StudentCreate.cs" />
+    <Compile Include="StudentDetail.cs" />
+    <Compile Include="StudentEdit.cs" />
+    <Compile Include="StudentList.cs" />
     <Compile Include="TeacherEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeacherCreate.cs" />
