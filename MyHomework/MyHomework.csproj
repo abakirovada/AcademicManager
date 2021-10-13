@@ -271,8 +271,8 @@
     <Content Include="Views\Enrollment\Details.cshtml" />
     <Content Include="Views\Enrollment\Edit.cshtml" />
     <Content Include="Views\Enrollment\Delete.cshtml" />
-    <Content Include="Views\Class\Index.cshtml" />
     <Content Include="Views\Class\Details.cshtml" />
+    <Content Include="Views\Class\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
