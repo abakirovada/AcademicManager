@@ -3,56 +3,128 @@
 @{
     ViewBag.Title = "Details";
 }
+@if (User.IsInRole(MyHomework.Models.Roles.Teacher))
+{
 
-<h2>Details</h2>
+    <h2> Assignment Details</h2>
 
-<div>
-    <h4>AssignmentDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AssignmentId)
-        </dt>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AssignmentId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AssignmentId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AssignmentId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Deadline)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Deadline)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Deadline)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Deadline)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAssigned)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ClassId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAssigned)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ClassId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsGraded)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAssigned)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsGraded)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsAssigned)
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {id = Model.AssignmentId}) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsGraded)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsGraded)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit Assignment", "Edit", new { id = Model.AssignmentId }) |
+        @Html.ActionLink("Back to Assignment List", "Index")
+    </p>
+}
+@if (User.IsInRole(MyHomework.Models.Roles.Student))
+{
+
+    <h2> Assignment Details</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AssignmentId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AssignmentId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Deadline)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Deadline)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ClassId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ClassId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAssigned)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsAssigned)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsGraded)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsGraded)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Assignment List", "Index")
+    </p>
+}

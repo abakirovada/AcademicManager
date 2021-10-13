@@ -13,6 +13,7 @@ namespace MyHomework.Models
         public string Name { get; set; }
 
         public DateTimeOffset Deadline { get; set; }
+        public int ClassId { get; set; }
 
         public bool IsAssigned { get; set; }
 
