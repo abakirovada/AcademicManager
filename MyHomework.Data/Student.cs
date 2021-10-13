@@ -22,13 +22,18 @@ namespace MyHomework.Data
         public string LastName { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name ="Enrolled Classes")]
-        public virtual ICollection<Enrollment> Classes { get; set; }
+        public int EnrollmentId { get; set; }
+        public virtual List<Enrollment> Classes { get; set; }
 
-        //[ForeignKey(nameof(Points))]
+        [Display(Name = "Assignments")]
+        public int AssignmentId { get; set; }
+        public virtual List<Assignment> Assignments { get; set; }
+
         public int GradeId { get; set; }
-        public virtual ICollection<Grade> Points { get; set; }
+        public virtual List<Grade> Points { get; set; }
     }
 }

@@ -19,13 +19,8 @@ namespace MyHomework.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Display(Name = "Enrolled Classes")]
-        public virtual ICollection<Enrollment> Classes { get; set; }
-
-        [ForeignKey(nameof(Points))]
-        public int Grade { get; set; }
-        public virtual ICollection<Grade> Points { get; set; }
     }
 }
