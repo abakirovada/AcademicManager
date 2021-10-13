@@ -59,9 +59,9 @@
     <Compile Include="Enrollment.cs" />
     <Compile Include="Grade.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202110121353090_fifth.cs" />
-    <Compile Include="Migrations\202110121353090_fifth.Designer.cs">
-      <DependentUpon>202110121353090_fifth.cs</DependentUpon>
+    <Compile Include="Migrations\202110131445540_initialmigration.cs" />
+    <Compile Include="Migrations\202110131445540_initialmigration.Designer.cs">
+      <DependentUpon>202110131445540_initialmigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110121353090_fifth.resx">
-      <DependentUpon>202110121353090_fifth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110131445540_initialmigration.resx">
+      <DependentUpon>202110131445540_initialmigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
