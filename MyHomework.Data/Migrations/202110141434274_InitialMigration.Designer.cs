@@ -7,13 +7,13 @@ namespace MyHomework.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class StudentDataChange : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(StudentDataChange));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202110131820140_StudentDataChange"; }
+            get { return "202110141434274_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
