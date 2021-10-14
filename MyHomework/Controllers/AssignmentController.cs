@@ -73,6 +73,7 @@ namespace MyHomework.Controllers
                 AssignmentId = detail.AssignmentId,
                 Name = detail.Name,
                 Deadline = detail.Deadline,
+                ClassId=detail.ClassId,
                 IsAssigned = detail.IsAssigned,
                 IsGraded=detail.IsGraded
             };

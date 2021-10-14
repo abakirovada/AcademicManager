@@ -17,7 +17,7 @@ namespace MyHomework.Services
                 {
                     Name = model.Name,
                     Deadline = model.Deadline,
-                    Class = model.Class,
+                    ClassId = model.ClassId,
                     IsAssigned=model.IsAssigned,
                     IsGraded=model.IsGraded
                 };
@@ -41,10 +41,7 @@ namespace MyHomework.Services
                         {
                             AssignmentId = e.AssignmentId,
                             Name = e.Name,
-                            Deadline = e.Deadline,
-                            Class = e.Class,
-                            IsAssigned=e.IsAssigned,
-                            IsGraded=e.IsGraded
+                            ClassId = e.ClassId
                         });
                 return query.ToArray();
             }
@@ -65,7 +62,7 @@ namespace MyHomework.Services
                         AssignmentId = entity.AssignmentId,
                         Name = entity.Name,
                         Deadline = entity.Deadline,
-                        Class = entity.Class,
+                        ClassId = entity.ClassId,
                         IsAssigned = entity.IsAssigned,
                         IsGraded=entity.IsGraded
                     };
@@ -84,6 +81,7 @@ namespace MyHomework.Services
 
                 entity.Name = model.Name;
                 entity.Deadline = model.Deadline;
+                entity.ClassId = model.ClassId;
                 entity.IsAssigned = model.IsAssigned;
                 entity.IsGraded = model.IsGraded;
 

@@ -12,16 +12,15 @@ namespace MyHomework.Models
     public class ClassDetail
     {
         public int ClassId { get; set; }
-        [Display(Name = "Name of the Class")]
+
+        [Display(Name = "Title")]
         public string Name { get; set; }
 
         public bool IsActive { get; set; }
 
-        [ForeignKey(nameof(Teacher))]
-        public Teacher TeacherId { get; set; }
-
         public virtual Teacher Teacher { get; set; }
 
         public virtual ICollection<Assignment> Assignments { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

@@ -45,11 +45,11 @@ namespace MyHomework.Controllers
 
             if (service.CreateStudent(model))
             {
-                TempData["SaveResult"] = "A student was created.";
+                TempData["SaveResult"] = "A student was successfully added.";
                 return RedirectToAction("Index");
             };
 
-            ModelState.AddModelError("", "A student couldn't be created.");
+            ModelState.AddModelError("", "A student couldn't be added.");
             return View(model);
         }
         //get by id
@@ -72,7 +72,10 @@ namespace MyHomework.Controllers
             {
                 StudentId = detail.StudentId,
                 FirstName = detail.FirstName,
-                LastName = detail.LastName
+                LastName = detail.LastName,
+                EnrollmentId=detail.EnrollmentId,
+                AssignmentId=detail.AssignmentId,
+                GradeId=detail.GradeId
             };
             return View(model);
         }

@@ -17,8 +17,9 @@ namespace MyHomework.Services
                 {
                     Name = model.Name,
                     IsActive = model.IsActive,
-                    TeacherId = model.TeacherId,
-                    Teacher=model.Teacher
+                    Teacher=model.Teacher,
+                    Assignments=model.Assignments,
+                    Enrollments=model.Enrollments
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -40,10 +41,7 @@ namespace MyHomework.Services
                         {
                             ClassId=e.ClassId,
                             Name = e.Name,
-                            IsActive = e.IsActive,
-                            TeacherId = e.TeacherId,
-                            Teacher = e.Teacher,
-                            Assignments = e.Assignments
+                            Teacher = e.Teacher
                         });
                 return query.ToArray();
             }
@@ -65,7 +63,8 @@ namespace MyHomework.Services
                         Name = entity.Name,
                         IsActive = entity.IsActive,
                         Teacher = entity.Teacher,
-                        Assignments = entity.Assignments
+                        Assignments = entity.Assignments,
+                        Enrollments=entity.Enrollments
                     };
             }
         }
@@ -97,9 +96,9 @@ namespace MyHomework.Services
 
                 entity.Name = model.Name;
                 entity.IsActive = model.IsActive;
-                entity.TeacherId = model.TeacherId;
                 entity.Teacher = model.Teacher;
                 entity.Assignments = model.Assignments;
+                entity.Enrollments = model.Enrollments;
 
                 return ctx.SaveChanges() == 1;
             }

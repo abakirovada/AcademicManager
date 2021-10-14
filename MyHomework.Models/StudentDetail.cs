@@ -22,8 +22,9 @@ namespace MyHomework.Models
         public string Email { get; set; }
 
         [Display(Name = "Enrolled Classes")]
-        public virtual ICollection<Enrollment> Classes { get; set; }
+        public int EnrollmentId { get; set; }
+        public int AssignmentId { get; set; }
 
-        public virtual ICollection<Grade> Points { get; set; }
+        public int GradeId { get; set; }
     }
 }

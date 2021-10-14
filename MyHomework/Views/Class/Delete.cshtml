@@ -1,11 +1,12 @@
 ﻿@model MyHomework.Models.ClassDetail
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2> Class Details</h2>
+<h2>Delete Class</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -34,8 +35,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete Class" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Class List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit Class", "Edit", new { id = Model.ClassId}) |
-    @Html.ActionLink("Back to Class List", "Index")
-</p>

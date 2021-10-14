@@ -38,8 +38,8 @@ namespace MyHomework.Services
                         e => new EnrollmentList
                         {
                             EnrollmentId = e.EnrollmentId,
-                            Class = e.Class,
-                            Students = e.Students
+                            ClassId = e.ClassId,
+                            StudentId = e.StudentId
                         });
                 return query.ToArray();
             }
@@ -59,9 +59,7 @@ namespace MyHomework.Services
                     {
                         EnrollmentId = entity.EnrollmentId,
                         ClassId = entity.ClassId,
-                        Class = entity.Class,
-                        StudentId=entity.StudentId,
-                        Students = entity.Students
+                        StudentId=entity.StudentId
                     };
             }
         }

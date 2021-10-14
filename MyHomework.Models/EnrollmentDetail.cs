@@ -12,8 +12,6 @@ namespace MyHomework.Models
         public int EnrollmentId { get; set; }
 
         public int ClassId { get; set; }
-        public virtual Class Class { get; set; }
         public int StudentId { get; set; }
-        public ICollection<Student> Students { get; set; }
     }
 }

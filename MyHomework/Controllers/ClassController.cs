@@ -39,11 +39,11 @@ namespace MyHomework.Controllers
 
             if (service.CreateClass(model))
             {
-                TempData["SaveResult"] = "A class was created.";
+                TempData["SaveResult"] = "A class was added.";
                 return RedirectToAction("Index");
             };
 
-            ModelState.AddModelError("", "A Class couldn't be created.");
+            ModelState.AddModelError("", "A Class couldn't be added.");
             return View(model);
         }
 
@@ -74,9 +74,9 @@ namespace MyHomework.Controllers
             {
                 ClassId = detail.ClassId,
                 Name = detail.Name,
-                TeacherId = detail.TeacherId,
                 Teacher = detail.Teacher,
                 Assignments = detail.Assignments,
+                Enrollments=detail.Enrollments
             };
             return View(model);
         }
@@ -126,7 +126,7 @@ namespace MyHomework.Controllers
 
             service.DeleteClass(id);
 
-            TempData["SaveResult"] = "The teacher was successfully deleted from the system";
+            TempData["SaveResult"] = "The class was successfully deleted";
 
             return RedirectToAction("Index");
         }

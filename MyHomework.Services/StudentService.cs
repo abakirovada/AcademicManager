@@ -62,8 +62,9 @@ namespace MyHomework.Services
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Email = entity.Email,
-                        Classes = entity.Classes,
-                        Points=entity.Points
+                        EnrollmentId = entity.EnrollmentId,
+                        AssignmentId = entity.AssignmentId,
+                        GradeId = entity.GradeId,
                     };
             }
         }
@@ -81,6 +82,9 @@ namespace MyHomework.Services
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.Email = model.Email;
+                entity.EnrollmentId = model.EnrollmentId;
+                entity.AssignmentId = model.AssignmentId;
+                entity.GradeId = model.GradeId;
 
                 return ctx.SaveChanges() == 1;
             }
