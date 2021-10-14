@@ -16,6 +16,9 @@ namespace MyHomework.Services
             var entity =
                 new Grade()
                 {
+                    ClassId=model.ClassId,
+                    AssignmentId=model.AssignmentId,
+                    StudentId=model.StudentId,
                     Points = model.Points
                 };
             using (var ctx = new ApplicationDbContext())
@@ -37,7 +40,8 @@ namespace MyHomework.Services
                         e => new GradeList
                         {
                             GradeId = e.GradeId,
-                            Assignment = e.Assignment,
+                            AssignmentId = e.AssignmentId,
+                            Assignment=e.Assignment,
                             Points = e.Points
                         });
                 return query.ToArray();
@@ -57,7 +61,10 @@ namespace MyHomework.Services
                     new GradeDetail
                     {
                         GradeId = entity.GradeId,
+                        ClassId=entity.ClassId,
+                        AssignmentId=entity.AssignmentId,
                         Assignment = entity.Assignment,
+                        StudentId=entity.StudentId,
                         Student = entity.Student,
                         Points = entity.Points
                     };
