@@ -1,6 +1,71 @@
-﻿@{
+﻿@using MyHomework.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Home Page";
 }
+@if (!User.Identity.IsAuthenticated)
+{
+    <body class="col-lg-2" style="background-image: url(https://us.123rf.com/450wm/maya23k/maya23k1901/maya23k190100345/115065130-school-supplies-on-blue-wooden-background.jpg?ver=6); background-size: cover;">
+        <div class="container-fluid col-lg-8" style="margin-left: 285px; display: inline;">
+            <div class="text-uppercase text-center" style="width:100px; height:100px; flex:auto"><h2 class="col-lg-2 text-center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align:center; padding-top:65px; padding-left:105px; margin-left:50px; font-size:xx-large"> <strong>ACADEMIC <br />MANAGER</strong></h2></div>
+            <div class="row main-content bg-success text-center" style="width: 70%; border-radius: 20px; box-shadow: 0 5px 5px rgba(0,0,0,.4); margin-top:220px; display: flex;">
+                <div class="col-md-4 text-center company__info" style="background-color: #008080; border-top-left-radius: 20px; border-bottom-left-radius: 20px; display: flex; flex-direction: column; justify-content: center; color: #fff;">
+                    <span> <img style="max-inline-size:100px;" src="https://img.freepik.com/free-vector/graduation-cap-books-stacked_165488-102.jpg?size=626&ext=jpg" alt="image" /></span>
+
+                </div>
+                <section id="loginForm">
+                    <br />
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4><strong>Log In</strong></h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group" style="padding-left:45px;">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-5 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-5 control-label" })
+                            <div class="col-md-10" style="padding-left:65px;">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="padding-left:0px;">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="padding-right:60px;">
+                                <input type="submit" value="Log in" class="btn btn-default" />
+                            </div>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Don't you have an account?", "Register", "Account")
+                        </p>
+                        //Enable this once you have account confirmation enabled for password reset functionality
+                        @*<p>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </p>*@
+                    }
+                </section>
+            </div>
+        </div>
+    </body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+}
+
+
 
 @if (User.IsInRole(MyHomework.Models.Roles.Teacher))
 {
