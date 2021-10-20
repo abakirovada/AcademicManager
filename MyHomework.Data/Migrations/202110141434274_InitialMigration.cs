@@ -3,7 +3,7 @@ namespace MyHomework.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initialmigration : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -17,10 +17,13 @@ namespace MyHomework.Data.Migrations
                         ClassId = c.Int(nullable: false),
                         IsAssigned = c.Boolean(nullable: false),
                         IsGraded = c.Boolean(nullable: false),
+                        Student_StudentId = c.Int(),
                     })
                 .PrimaryKey(t => t.AssignmentId)
+                .ForeignKey("dbo.Student", t => t.Student_StudentId)
                 .ForeignKey("dbo.Class", t => t.ClassId, cascadeDelete: true)
-                .Index(t => t.ClassId);
+                .Index(t => t.ClassId)
+                .Index(t => t.Student_StudentId);
             
             CreateTable(
                 "dbo.Class",
@@ -42,16 +45,8 @@ namespace MyHomework.Data.Migrations
                         EnrollmentId = c.Int(nullable: false, identity: true),
                         ClassId = c.Int(nullable: false),
                         StudentId = c.Int(nullable: false),
-                        Student_StudentId = c.Int(),
-                        Student_StudentId1 = c.Int(),
                     })
-                .PrimaryKey(t => t.EnrollmentId)
-                .ForeignKey("dbo.Class", t => t.ClassId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.Student_StudentId)
-                .ForeignKey("dbo.Student", t => t.Student_StudentId1)
-                .Index(t => t.ClassId)
-                .Index(t => t.Student_StudentId)
-                .Index(t => t.Student_StudentId1);
+                .PrimaryKey(t => t.EnrollmentId);
             
             CreateTable(
                 "dbo.Student",
@@ -61,25 +56,27 @@ namespace MyHomework.Data.Migrations
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
                         Email = c.String(nullable: false),
+                        EnrollmentId = c.Int(nullable: false),
+                        AssignmentId = c.Int(nullable: false),
                         GradeId = c.Int(nullable: false),
-                        Enrollment_EnrollmentId = c.Int(),
                     })
-                .PrimaryKey(t => t.StudentId)
-                .ForeignKey("dbo.Enrollment", t => t.Enrollment_EnrollmentId)
-                .Index(t => t.Enrollment_EnrollmentId);
+                .PrimaryKey(t => t.StudentId);
             
             CreateTable(
                 "dbo.Grade",
                 c => new
                     {
                         GradeId = c.Int(nullable: false, identity: true),
-                        AssignmentId = c.Int(nullable: false),
-                        StudentId = c.Int(nullable: false),
+                        ClassId = c.Int(),
+                        AssignmentId = c.Int(),
+                        StudentId = c.Int(),
                         Points = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.GradeId)
-                .ForeignKey("dbo.Assignment", t => t.AssignmentId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.Assignment", t => t.AssignmentId)
+                .ForeignKey("dbo.Class", t => t.ClassId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
+                .Index(t => t.ClassId)
                 .Index(t => t.AssignmentId)
                 .Index(t => t.StudentId);
             
@@ -164,6 +161,32 @@ namespace MyHomework.Data.Migrations
                 .ForeignKey("dbo.ApplicationUser", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
             
+            CreateTable(
+                "dbo.EnrollmentClass",
+                c => new
+                    {
+                        Enrollment_EnrollmentId = c.Int(nullable: false),
+                        Class_ClassId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Enrollment_EnrollmentId, t.Class_ClassId })
+                .ForeignKey("dbo.Enrollment", t => t.Enrollment_EnrollmentId, cascadeDelete: true)
+                .ForeignKey("dbo.Class", t => t.Class_ClassId, cascadeDelete: true)
+                .Index(t => t.Enrollment_EnrollmentId)
+                .Index(t => t.Class_ClassId);
+            
+            CreateTable(
+                "dbo.StudentEnrollment",
+                c => new
+                    {
+                        Student_StudentId = c.Int(nullable: false),
+                        Enrollment_EnrollmentId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Student_StudentId, t.Enrollment_EnrollmentId })
+                .ForeignKey("dbo.Student", t => t.Student_StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.Enrollment", t => t.Enrollment_EnrollmentId, cascadeDelete: true)
+                .Index(t => t.Student_StudentId)
+                .Index(t => t.Enrollment_EnrollmentId);
+            
         }
         
         public override void Down()
@@ -174,24 +197,30 @@ namespace MyHomework.Data.Migrations
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
             DropForeignKey("dbo.Assignment", "ClassId", "dbo.Class");
             DropForeignKey("dbo.Class", "Teacher_TeacherId", "dbo.Teacher");
-            DropForeignKey("dbo.Student", "Enrollment_EnrollmentId", "dbo.Enrollment");
-            DropForeignKey("dbo.Enrollment", "Student_StudentId1", "dbo.Student");
             DropForeignKey("dbo.Grade", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.Grade", "ClassId", "dbo.Class");
             DropForeignKey("dbo.Grade", "AssignmentId", "dbo.Assignment");
-            DropForeignKey("dbo.Enrollment", "Student_StudentId", "dbo.Student");
-            DropForeignKey("dbo.Enrollment", "ClassId", "dbo.Class");
+            DropForeignKey("dbo.StudentEnrollment", "Enrollment_EnrollmentId", "dbo.Enrollment");
+            DropForeignKey("dbo.StudentEnrollment", "Student_StudentId", "dbo.Student");
+            DropForeignKey("dbo.Assignment", "Student_StudentId", "dbo.Student");
+            DropForeignKey("dbo.EnrollmentClass", "Class_ClassId", "dbo.Class");
+            DropForeignKey("dbo.EnrollmentClass", "Enrollment_EnrollmentId", "dbo.Enrollment");
+            DropIndex("dbo.StudentEnrollment", new[] { "Enrollment_EnrollmentId" });
+            DropIndex("dbo.StudentEnrollment", new[] { "Student_StudentId" });
+            DropIndex("dbo.EnrollmentClass", new[] { "Class_ClassId" });
+            DropIndex("dbo.EnrollmentClass", new[] { "Enrollment_EnrollmentId" });
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
             DropIndex("dbo.Grade", new[] { "StudentId" });
             DropIndex("dbo.Grade", new[] { "AssignmentId" });
-            DropIndex("dbo.Student", new[] { "Enrollment_EnrollmentId" });
-            DropIndex("dbo.Enrollment", new[] { "Student_StudentId1" });
-            DropIndex("dbo.Enrollment", new[] { "Student_StudentId" });
-            DropIndex("dbo.Enrollment", new[] { "ClassId" });
+            DropIndex("dbo.Grade", new[] { "ClassId" });
             DropIndex("dbo.Class", new[] { "Teacher_TeacherId" });
+            DropIndex("dbo.Assignment", new[] { "Student_StudentId" });
             DropIndex("dbo.Assignment", new[] { "ClassId" });
+            DropTable("dbo.StudentEnrollment");
+            DropTable("dbo.EnrollmentClass");
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");

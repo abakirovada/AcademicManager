@@ -1,65 +1,260 @@
-﻿@{
+﻿@using MyHomework.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Home Page";
 }
+@if (!User.Identity.IsAuthenticated)
+{
+    <body class="col-lg-2" style="background-image: url(https://us.123rf.com/450wm/maya23k/maya23k1901/maya23k190100345/115065130-school-supplies-on-blue-wooden-background.jpg?ver=6); background-size: cover;">
+        <div class="container-fluid col-lg-8" style="margin-left: 285px; display: inline;">
+            <div class="text-uppercase text-center" style="width:100px; height:100px; flex:auto"><h2 class="col-lg-2 text-center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align:center; padding-top:65px; padding-left:105px; margin-left:50px; font-size:xx-large"> <strong>ACADEMIC <br />MANAGER</strong></h2></div>
+            <div class="row main-content bg-success text-center" style="width: 70%; border-radius: 20px; box-shadow: 0 5px 5px rgba(0,0,0,.4); margin-top:220px; display: flex;">
+                <div class="col-md-4 text-center company__info" style="background-color: #008080; border-top-left-radius: 20px; border-bottom-left-radius: 20px; display: flex; flex-direction: column; justify-content: center; color: #fff;">
+                    <span> <img style="max-inline-size:100px;" src="https://img.freepik.com/free-vector/graduation-cap-books-stacked_165488-102.jpg?size=626&ext=jpg" alt="image" /></span>
+
+                </div>
+                <section id="loginForm">
+                    <br />
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4><strong>Log In</strong></h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group" style="padding-left:45px;">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-5 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-5 control-label" })
+                            <div class="col-md-10" style="padding-left:65px;">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="padding-left:0px;">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="padding-right:60px;">
+                                <input type="submit" value="Log in" class="btn btn-default" />
+                            </div>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Don't you have an account?", "Register", "Account")
+                        </p>
+                        //Enable this once you have account confirmation enabled for password reset functionality
+                        @*<p>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </p>*@
+                    }
+                </section>
+            </div>
+        </div>
+    </body>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+}
+
+
 
 @if (User.IsInRole(MyHomework.Models.Roles.Teacher))
 {
-    <div class="jumbotron">
-        <h1>Teacher's Page'</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+    <!DOCTYPE html>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+    <body class="w3-light-grey w3-content" style="max-width:1600px">
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <!-- Sidebar/menu -->
+        <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+            <br>
+            <div class="w3-container">
+                <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+                    <i class="fa fa-remove"></i>
+                </a>
+                <img src="https://img.freepik.com/free-vector/graduation-cap-books-stacked_165488-102.jpg?size=626&ext=jpg" style="width:45%; position:center;" class="w3-round"><br><br>
+                <h4><b>My Teaching</b></h4>
+
+            </div>
+            <div class="w3-bar-block">
+                <a href="/class" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i>MY CLASSES</a>
+
+                <a href="/Assignment" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>ASSIGNMENTS</a>
+                <a href="/Grade" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-pin fa-fw w3-margin-right"></i>GRADES</a>
+            </div>
+        </nav>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-left:300px">
+
+            <!-- Header -->
+            <header id="portfolio">
+                <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+                <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+                <div class="w3-container">
+                    <br />
+                    <h1><b>Welcome, dear Teacher!</b></h1>
+
+                    <p>This application allows you to manage your teaching, specifically, the classes you teach, assignments for those classes and grades. You can create, update, and delte classes, assignments, students, and grades. You can also obtain information about your students, other courses, and instructors.the courses that they teach. The top bars navigate you to more general information, whereas sidebars can navigate you specifically to your own classes. Hopefully, this application would serve efficiently in your teaching process.</p>
+
+
+                    <!-- Pagination -->
+                    <div class="w3-center w3-padding-32">
+                        <div class="w3-bar">
+                            <a href="/home/index" class="w3-bar-item w3-black w3-button">1</a>
+                            <a href="/assignment" class="w3-bar-item w3-button w3-hover-black">2</a>
+                            <a href="/grade" class="w3-bar-item w3-button w3-hover-black">3</a>
+                            <a href="/teacher" class="w3-bar-item w3-button w3-hover-black">>></a>
+                        </div>
+                    </div>
+
+
+                    <!-- Contact Section -->
+                    <div class="w3-container w3-padding-large w3-grey">
+                        <h4 id="contact"><b>Contact us in case technical issues</b></h4>
+                        <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+                            <div class="w3-third w3-dark-grey">
+                                <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+                                <p>abakirovada@gmail.com</p>
+                            </div>
+                            <div class="w3-third w3-dark-grey">
+                                <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+                                <p>1234567890</p>
+                            </div>
+                        </div>
+                        <hr class="w3-opacity">
+                        <form action="/action_page.php" target="_blank">
+                            <div class="w3-section">
+                                <label>Name</label>
+                                <input class="w3-input w3-border" type="text" name="Name" required>
+                            </div>
+                            <div class="w3-section">
+                                <label>Email</label>
+                                <input class="w3-input w3-border" type="text" name="Email" required>
+                            </div>
+                            <div class="w3-section">
+                                <label>Message</label>
+                                <input class="w3-input w3-border" type="text" name="Message" required>
+                            </div>
+                            <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </header>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>
+    </body>
 }
 
 @if (User.IsInRole(MyHomework.Models.Roles.Student))
 {
-    <div class="jumbotron">
-        <h1>Student's Page</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+    <body class="w3-light-grey w3-content" style="max-width:1600px">
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <!-- Sidebar/menu -->
+        <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+            <br>
+            <div class="w3-container">
+                <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+                    <i class="fa fa-remove"></i>
+                </a>
+                <img src="https://img.freepik.com/free-vector/graduation-cap-books-stacked_165488-102.jpg?size=626&ext=jpg" style="width:45%; position:center;" class="w3-round"><br><br>
+                <h4><b>My Academics</b></h4>
+
+            </div>
+            <div class="w3-bar-block">
+                <a href="/Enrollment" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i>MY CLASSES</a>
+
+                <a href="/Assignment" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>ASSIGNMENTS</a>
+                <a href="/Grade" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-map-pin fa-fw w3-margin-right"></i>GRADES</a>
+            </div>
+        </nav>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-left:300px">
+
+            <!-- Header -->
+            <header id="portfolio">
+                <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+                <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+                <div class="w3-container">
+                    <br />
+                    <h1><b>Welcome, dear Student!</b></h1>
+
+                    <p>This application allows you to manage your studies, specifically, the classes you enrolled and assignments. You can also obtain information about instructors, the courses that they teach. The top bars navigate you to more general information about your academics, whereas sidebars can navigate specifically to your own classes. Hopefully, this application would serve efficiently in your education.</p>
+
+
+                    <!-- Pagination -->
+                    <div class="w3-center w3-padding-32">
+                        <div class="w3-bar">
+                            <a href="/home/index" class="w3-bar-item w3-black w3-button">1</a>
+                            <a href="/assignment" class="w3-bar-item w3-button w3-hover-black">2</a>
+                            <a href="/grade" class="w3-bar-item w3-button w3-hover-black">3</a>
+                            <a href="/teacher" class="w3-bar-item w3-button w3-hover-black">>></a>
+                        </div>
+                    </div>
+
+
+                    <!-- Contact Section -->
+                    <div class="w3-container w3-padding-large w3-grey">
+                        <h4 id="contact"><b>Contact us in case technical issues</b></h4>
+                        <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+                            <div class="w3-third w3-dark-grey">
+                                <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+                                <p>abakirovada@gmail.com</p>
+                            </div>
+                            <div class="w3-third w3-dark-grey">
+                                <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+                                <p>1234567890</p>
+                            </div>
+                        </div>
+                        <hr class="w3-opacity">
+                        <form action="/action_page.php" target="_blank">
+                            <div class="w3-section">
+                                <label>Name</label>
+                                <input class="w3-input w3-border" type="text" name="Name" required>
+                            </div>
+                            <div class="w3-section">
+                                <label>Email</label>
+                                <input class="w3-input w3-border" type="text" name="Email" required>
+                            </div>
+                            <div class="w3-section">
+                                <label>Message</label>
+                                <input class="w3-input w3-border" type="text" name="Message" required>
+                            </div>
+                            <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </header>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>
+    </body>
+
 }

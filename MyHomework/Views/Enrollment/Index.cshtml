@@ -3,42 +3,94 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@if (TempData.ContainsKey("SaveResult"))
+@if (User.IsInRole(MyHomework.Models.Roles.Teacher))
 {
-    <div class="alert-success fade in" role="alert">
-        @ViewBag.SaveResult
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
+    <body>
+        <div class="bg-image col-lg-6" style="background-image: url(http://www.freeppt.net/background/textures-notebook-paper-wallpapers-backgrounds-for-powerpoint.jpg); height: 100vh; width: 120vh; ">
+
+            <h2 class=text-center text-danger"><strong>ENROLLMENT LIST</strong></h2>
+
+            <p>
+                @Html.ActionLink("Add New Enrollment", "Create")
+            </p>
+            @if (TempData.ContainsKey("SaveResult"))
+            {
+            <div class="alert-success fade in" role="alert">
+                @ViewBag.SaveResult
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                @TempData["SaveResult"]
+            </div>
+            }
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EnrollmentId)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EnrollmentId)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit Enrollment", "Edit", new { id = item.EnrollmentId }) |
+                            @Html.ActionLink("Enrollment Details", "Details", new { id = item.EnrollmentId }) |
+                            @Html.ActionLink("Delete Enrollment", "Delete", new { id = item.EnrollmentId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </body>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EnrollmentId)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnrollmentId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EnrollmentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentId })
-            </td>
-        </tr>
-    }
+@if (User.IsInRole(MyHomework.Models.Roles.Student))
+{
+    <body>
+        <div class="bg-image col-lg-6" style="background-image: url(http://www.freeppt.net/background/textures-notebook-paper-wallpapers-backgrounds-for-powerpoint.jpg); height: 100vh; width: 120vh; ">
 
-</table>
+            <h2 class=text-center text-danger"><strong>MY ENROLLMENT</strong></h2>
+
+            @*<p>
+                    @Html.ActionLink("Add New Enrollment", "Create")
+                </p>
+                if (TempData.ContainsKey("SaveResult"))
+                {
+                    <div class="alert-success fade in" role="alert">
+                        @ViewBag.SaveResult
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                        @TempData["SaveResult"]
+                    </div>
+                }*@
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EnrollmentId)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EnrollmentId)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Enrollment Details", "Details", new { id = item.EnrollmentId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </body>
+}
