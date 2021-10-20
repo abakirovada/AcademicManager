@@ -6,4 +6,5 @@ https://docs.google.com/document/d/105wbvl1zZjQ2tQlAQZs4v8p4C3m5BpEkmNumM98lfZk/
 https://trello.com/b/wJoYHchP/myhomework-app
 * Table Diagram
 https://app.creately.com/diagram/ez5hxjXf1gu/edit
+<br/>
 made by Dinara Abakirova
